@@ -17,6 +17,29 @@ public class App {
         }
     }
 
+    public static void writeMatrix(String filename, int[][] matrix) {
+        try {
+            // File newFile = new File(filename);
+            // if (newFile.createNewFile()) {
+                
+            // }
+            FileWriter writer = new FileWriter(filename);
+
+            for (int i = 0; i < matrix.length; i++) {    
+                for (int j = 0; j < matrix.length; j++) {
+                    writer.write(String.valueOf(matrix[i][j]) + ' ');
+                }
+                writer.write('\n');
+            }
+
+            writer.close();
+        } catch (Exception e) {
+
+        }
+        
+        
+    }
+
     public static int[][] readIntoMatrix(String path) {
         try {
             FileReader fr = new FileReader(path);
@@ -101,8 +124,11 @@ public class App {
             case 1:
                 int length = getInt(args[0]);
 
-                m1 = createMatrix(length);
-                m2 = createMatrix(length);
+                writeMatrix("matrix1.txt", createMatrix(length));
+                writeMatrix("matrix2.txt", createMatrix(length));
+
+                m1 = readIntoMatrix("matrix1.txt");
+                m2 = readIntoMatrix("matrix2.txt");
 
             break;
             // Assume filename input
@@ -121,7 +147,8 @@ public class App {
 
         if (m1.length > 0) {
             m3 = multiplyMatrix(m1, m2);
-            System.out.println("\n");
+            writeMatrix("matrix3.txt", m3);
+            // System.out.println("\n");
             printMatrix(m3);
         }
     }
