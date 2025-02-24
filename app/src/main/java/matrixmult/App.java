@@ -1,8 +1,6 @@
 package matrixmult;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,10 +17,6 @@ public class App {
 
     public static void writeMatrix(String filename, int[][] matrix) {
         try {
-            // File newFile = new File(filename);
-            // if (newFile.createNewFile()) {
-                
-            // }
             FileWriter writer = new FileWriter(filename);
 
             for (int i = 0; i < matrix.length; i++) {    
@@ -33,8 +27,8 @@ public class App {
             }
 
             writer.close();
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            System.out.println("There was an error writing file");
         }
         
         
